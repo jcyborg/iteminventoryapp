@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemService } from '../services/item.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items',
@@ -15,7 +16,7 @@ export class ItemsComponent implements OnInit {
   pageSize = 20;
   totalPages = 0;
 
-  constructor(private itemService: ItemService) {}
+  constructor(private itemService: ItemService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchItems();
@@ -36,5 +37,9 @@ export class ItemsComponent implements OnInit {
       this.currentPage = page;
       this.fetchItems();
     }
+  }
+
+  goToUpload(): void {
+    this.router.navigate(['/upload']);
   }
 }
