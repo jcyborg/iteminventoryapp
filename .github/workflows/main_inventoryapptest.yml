@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - invenntoryapp
+name: Build and deploy Node.js app to Azure Web App - inventoryapptest
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -25,15 +25,13 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
-
+          npm run test --if-present
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: release.zip
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,22 +47,19 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
       
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_04A432EF055D43E8B5D0E99A59434F1A }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D1A755A2C69A43EEA13D9075194EA652 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2932B57DB9B84A0AB2E33B8162D9D3DB }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CDC3CEF7C99845D5B9DD894E0CDE862F }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_73E049642C5E44D2AB079F1455C042E9 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C104CF18A8B144988A122356A675736E }}
 
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
-          app-name: 'invenntoryapp'
+          app-name: 'inventoryapptest'
           slot-name: 'Production'
           package: .
           
