@@ -1,0 +1,4 @@
+<h2>Upload Items File</h2>
+<input type="file" (change)="onFileSelected($event)" />
+<button (click)="onUpload()" [disabled]="!selectedFile">Upload</button>
+<p *ngIf="message">{{ message }}</p>
