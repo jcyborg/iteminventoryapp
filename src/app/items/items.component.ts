@@ -9,7 +9,7 @@ import { ItemService } from '../services/item.service';
   templateUrl: './items.component.html',
   styleUrl: './items.component.scss'
 })
-export class ItemComponent implements OnInit {
+export class ItemsComponent implements OnInit {
   items: any[] = [];
   currentPage = 1;
   pageSize = 20;
