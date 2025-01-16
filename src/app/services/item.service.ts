@@ -14,8 +14,8 @@ export interface PaginatedResult<T> {
   providedIn: 'root'
 })
 export class ItemService {
-  private apiUrl = 'http://localhost:5051/api/items';
-  //private apiUrl = 'https://iteminventoryparexcellence-bve3d2fshtdxdvbs.eastus2-01.azurewebsites.net/api/items';
+  //private apiUrl = 'http://localhost:5051/api/items';
+  private apiUrl = 'https://iteminventoryparexcellence-bve3d2fshtdxdvbs.eastus2-01.azurewebsites.net/api/items';
 
   constructor(private http: HttpClient) {}
 
